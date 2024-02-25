@@ -32,13 +32,20 @@ class Game{
         //store human players placed stones
         $humanPlayerStones=$this->gameData['humanPlayerStones'];
         
+        
         //store computer players placed stones
         $computerPlayerStones=$this->gameData['computerPlayerStones'];
 
         //append new coordinates to players stones
         $appendedCoordinates=[$x,$y];
+      
+       
         if($player=="HUMAN"){
-            $humanPlayerStones+=$appendedCoordinates;
+          
+            //$humanPlayerStones=$humanPlayerStones+$appendedCoordinates;
+            $humanPlayerStones=array_merge($humanPlayerStones, $appendedCoordinates);
+           
+        
             $this->gameData['humanPlayerStones']=$humanPlayerStones;
         }
         else{
@@ -77,9 +84,10 @@ class Game{
             //update game state to showcase win, winning row
             $this->gameData['computerWon']=true;
         }
-
+        
         //convert the array to JSON
         $newFileContent = json_encode($this->gameData);
+     
         //update game state file
         file_put_contents($this->gameStateFile, $newFileContent);
 

@@ -43,7 +43,7 @@ else{
         $x=$_GET['x'];
         $y=$_GET['y'];
         //instantiate new Game and pass in x/y coordinate of placed stone
-        $newGame = new Game($gameStateFile, $x, $y,"HUMAN");
+        $newGame = new Game($gameStateFile, intval($x), intval($y),"HUMAN");
         echo "we instantiated a new game";
         exit;
 
