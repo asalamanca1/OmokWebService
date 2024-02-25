@@ -37,13 +37,14 @@ else{
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
     $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
-    echo $gameStateFile;
+    
     //search if the file already exists, if so we can proceed with game
     if (file_exists($gameStateFile)) {
         $x=$_GET['x'];
         $y=$_GET['y'];
         //instantiate new Game and pass in x/y coordinate of placed stone
         $newGame = new Game($gameStateFile, $x, $y,"HUMAN");
+        echo "we instantiated a new game";
         exit;
 
     } 
@@ -56,6 +57,7 @@ else{
 
 }
 
-
+//nano /opt/homebrew/etc/php/7.4/php.ini
+///opt/homebrew/lib/php/pecl/20190902
 
 ?>

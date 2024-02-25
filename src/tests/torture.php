@@ -5,9 +5,14 @@
 
 // set to the base address (URL) of your Omok web service
 //$home = "https://cssrvlab01.utep.edu/classes/cs3360/<username>"
-$home = "https://www.cs.utep.edu/cheon/cs3360/project/omok/";
+//$home = "https://www.cs.utep.edu/cheon/cs3360/project/omok/";
 //$home = "http://localhost:8000/";
-//$home="http://localhost:3000/OmokWebService/src/.php";
+
+//our links
+//info
+//$home="https://cssrvlab01.utep.edu/Classes/cs3360Cheon/Section1/fmunoz9/OmokWebService/src/info/index.php";
+//new
+$home="https://cssrvlab01.utep.edu/Classes/cs3360Cheon/Section1/fmunoz9/OmokWebService/src";
 
 $strategies = array(); // strategies supported by the web service under test
 $size = 15;  // size of the board

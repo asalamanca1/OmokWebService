@@ -1,0 +1,1 @@
+{"pid":"65dac7dc557c6","strategy":"Smart","humanPlayerStones":[],"computerPlayerStones":[],"isDraw":false,"humanWon":false,"computerWon":false,"winningRow":[]}

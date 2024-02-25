@@ -15,7 +15,7 @@ class Board{
         $intersections = array();
         for ($i = 0; $i < $this->size; $i++) {
             for ($j = 0; $j < $this->size; $j++) {
-                $this->$intersections[$i][$j] = "EMPTY";
+                $this->intersections[$i][$j] = "EMPTY";
             }
         }
 
@@ -24,18 +24,21 @@ class Board{
         $this->computerPlayerStones=$computerPlayerStones;
 
         //place human players stones on board
-        for($i = 0; $i < count($this->$humanPlayerStones)/2; $i++){
-            $x=$this->humanPlayerStones[$i];
-            $y=$this->humanPlayerStones[$i+1];
-            $this->placeStone($x,$y,"HUMAN");
+        $count = count($this->humanPlayerStones);
+        for ($i = 0; $i < $count; $i += 2) {
+            $x = $this->humanPlayerStones[$i];
+            $y = $this->humanPlayerStones[$i + 1];
+            $this->placeStone($x, $y, "HUMAN");
         }
 
 
+
         //place computer players stones on board
-        for($i = 0; $i < count($this->$computerPlayerStones)/2; $i++){
-            $x=$this->computerPlayerStones[$i];
-            $y=$this->computerPlayerStones[$i+1];
-            $this->placeStone($x,$y,"COMPUTER");
+        $count = count($this->computerPlayerStones);
+        for ($i = 0; $i < $count; $i += 2) {
+            $x = $this->computerPlayerStones[$i];
+            $y = $this->computerPlayerStones[$i + 1];
+            $this->placeStone($x, $y, "COMPUTER");
         }
     }
 
