@@ -12,7 +12,7 @@ class Board{
     //Default constructor
     public function __construct($humanPlayerStones,$computerPlayerStones) {
         //initializes 2d array of 15x15 intersections on board
-        $intersections = array();
+        
         for ($i = 0; $i < $this->size; $i++) {
             for ($j = 0; $j < $this->size; $j++) {
                 $this->intersections[$i][$j] = "EMPTY";
@@ -70,41 +70,39 @@ class Board{
 
 
     //check for a winning row of 5
-    public function checkForWin($player) {
-        //traverse all of players intersections
-        for ($x = 0; $x < $this->size; $x++) {
-            for ($y = 0; $y < $this->size; $y++) {
-                //for each intersection that belongs to player, check for a row of 5
-                if($this->intersections[$x][$y]===$player){
-                    //Check vertically (up and down)
-                    $verticalCount = 1 + $this->countDown($x, $y - 1, $player) + $this->countUp($x, $y + 1, $player);
-                    if ($verticalCount >= 5) {
-                        //Win condition met vertically
-                        return true; 
-                    }
-                    //Check horizontally (left and right)
-                    $horizontalCount = 1 + $this->countLeft($x - 1, $y, $player) + $this->countRight($x + 1, $y, $player);
-                    if ($horizontalCount >= 5) {
-                        //Win condition met horizontally
-                        return true; 
-                    }
-                    //FIX THE LOGIC FOR CHECKING DIAGONAL ROWS, ITS CURRENTLY INCORRECT
-                    //Check diagonally (top-left to bottom-right)
-                    $diagonalTRCount = 1 + $this->countLeft($x - 1, $y - 1, $player) + $this->countRight($x + 1, $y + 1, $player);
-                    if ($diagonalTRCount >= 5) {
-                        //Win condition met diagonally (top-left to bottom-right)
-                        return true; 
-                    }
-                    //FIX THE LOGIC FOR CHECKING DIAGONAL ROWS, ITS CURRENTLY INCORRECT
-                    //Check diagonally (top-right to bottom-left)
-                    $diagonalTLCount = 1 + $this->countRight($x + 1, $y - 1, $player) + $this->countLeft($x - 1, $y + 1, $player);
-                    if ($diagonalTLCount >= 5) {
-                        //Win condition met diagonally (top-right to bottom-left)
-                        return true; 
-                    }
-                }
+    public function checkForWin($x,$y,$player) {
+        
+        
+        //for each intersection that belongs to player, check for a row of 5
+        if($this->intersections[$x][$y]==$player){
+            //Check vertically (up and down)
+            $verticalCount = 1 + $this->countDown($x, $y - 1, $player) + $this->countUp($x, $y + 1, $player);
+            if ($verticalCount >= 5) {
+                //Win condition met vertically
+                return true; 
+            }
+            //Check horizontally (left and right)
+            $horizontalCount = 1 + $this->countLeft($x - 1, $y, $player) + $this->countRight($x + 1, $y, $player);
+            if ($horizontalCount >= 5) {
+                //Win condition met horizontally
+                return true; 
+            }
+            //FIX THE LOGIC FOR CHECKING DIAGONAL ROWS, ITS CURRENTLY INCORRECT
+            //Check diagonally (top-left to bottom-right)
+            $diagonalTRCount = 1 + $this->countLeft($x - 1, $y - 1, $player) + $this->countRight($x + 1, $y + 1, $player);
+            if ($diagonalTRCount >= 5) {
+                //Win condition met diagonally (top-left to bottom-right)
+                return true; 
+            }
+            //FIX THE LOGIC FOR CHECKING DIAGONAL ROWS, ITS CURRENTLY INCORRECT
+            //Check diagonally (top-right to bottom-left)
+            $diagonalTLCount = 1 + $this->countRight($x + 1, $y - 1, $player) + $this->countLeft($x - 1, $y + 1, $player);
+            if ($diagonalTLCount >= 5) {
+                //Win condition met diagonally (top-right to bottom-left)
+                return true; 
             }
         }
+          
 
         
         //No win condition met
