@@ -23,6 +23,7 @@ class SmartStrategy extends MoveStrategy{
     }
     //uses boolean and while loop to look for an empty spot
     function pickSmart(){
+        echo "Smart Strat Selected:";
         $takenTile = true;
         while($takenTile){
             $x = rand(0,14);
