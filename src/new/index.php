@@ -31,7 +31,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
@@ -43,7 +44,7 @@ else{
            
             break;
          
-         
+        //  
         //user has chosen to play random strategy
         case $strategies[1]:
             //declare variables stored in gamestate file
@@ -62,7 +63,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object

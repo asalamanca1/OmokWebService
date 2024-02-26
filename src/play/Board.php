@@ -168,6 +168,12 @@ class Board{
         return 0;
     }
 
+    public function isEmpty($x, $y) {
+        // Assuming $this->intersections is the 2D array representing the board
+        // Check if the position is within the board bounds and is empty
+        return isset($this->intersections[$x][$y]) && $this->intersections[$x][$y] == "EMPTY";
+    }
+
     //NOTE: add function that counts diagonally from bottom right to top left
 
 }

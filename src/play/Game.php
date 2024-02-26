@@ -1,11 +1,13 @@
 <?php
 include "Board.php";
+include_once "RandomStrategy.php"; // Include this at the top of your
 
 class Game{
     public Board $board;//respresents game board
     public $strategy;//represents games strategy
     private $gameStateFile;//game state file
     private $gameData;//stores game state data array
+    public $computerPlayerStones;
 
     //PSEUDOCODE
     //instantiate board with player and computer intersections
@@ -13,7 +15,6 @@ class Game{
     //check for win
     //update file
     //update json response
-    
 
 
     //constructor that takes pid & both player and computer rows
@@ -31,8 +32,6 @@ class Game{
 
         //store human players placed stones
         $humanPlayerStones=$this->gameData['humanPlayerStones'];
-        
-        
         //store computer players placed stones
         $computerPlayerStones=$this->gameData['computerPlayerStones'];
 
@@ -84,15 +83,32 @@ class Game{
             //update game state to showcase win, winning row
             $this->gameData['computerWon']=true;
         }
-        
         //convert the array to JSON
         $newFileContent = json_encode($this->gameData);
-     
         //update game state file
         file_put_contents($this->gameStateFile, $newFileContent);
 
 
     }
+
+    function CPUMove(){
+        $random = new RandomStrategy($this->board);
+        $computerMove = $random->pickPlace($this->board); // Get the computer's move
+    
+        // Check if the move is valid and update the board and game state
+        if (isset($computerMove['x']) && isset($computerMove['y'])) {
+            $this->board->placeStone($computerMove['x'], $computerMove['y'], "COMPUTER");
+            $this->gameData['computerPlayerStones'][] = $computerMove['x'];
+            $this->gameData['computerPlayerStones'][] = $computerMove['y'];
+    
+            // Save the updated game state
+            $newFileContent = json_encode($this->gameData);
+            file_put_contents($this->gameStateFile, $newFileContent);
+        }
+    
+        return $computerMove;
+    }
+    
 
 
     /*

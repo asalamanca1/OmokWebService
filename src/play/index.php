@@ -1,5 +1,8 @@
 <?php
 include "Game.php";
+include_once "RandomStrategy.php";
+// include other strategy files if necessary
+
 //http://localhost:3000/src/play/index.php?pid=65daa65356166&x=1&y=4
 //missing pid
 if (!array_key_exists('pid', $_GET)) { 
@@ -35,7 +38,8 @@ else if($_GET['y']<0||$_GET['y']>14){
 else{
     //create gamestate file format using pid
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
-    $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+    // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+    $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
     
     //search if the file already exists, if so we can proceed with game
@@ -45,6 +49,8 @@ else{
         //instantiate new Game and pass in x/y coordinate of placed stone
         $newGame = new Game($gameStateFile, intval($x), intval($y),"HUMAN");
         echo "we instantiated a new game";
+        // Add move strat here
+        $intersections = $newGame->CPUMove();
         exit;
 
     } 

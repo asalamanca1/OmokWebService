@@ -6,16 +6,15 @@ abstract class MoveStrategy {
       $this->board = $board;
    }
 
-   abstract function pickPlace($board);
+   abstract function pickPlace();
 
    function toJson() {
-      //return array(‘name’ => get_class($this));
+      return array("name" => get_class($this));
       return;
    }
 
    static function fromJson() {
-       $strategy = new static();
-       return $strategy;
+       return new static();
    }
 }
 ?>
