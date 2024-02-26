@@ -1,6 +1,7 @@
 <?php
 include "Board.php";
-include_once "RandomStrategy.php"; // Include this at the top of your
+include_once "RandomStrategy.php"; 
+include_once "SmartStrategy.php";
 
 class Game{
     public Board $board;//respresents game board
@@ -19,6 +20,8 @@ class Game{
 
     //constructor that takes pid & both player and computer rows
     public function __construct($gameStateFile, $x, $y, $player) {
+
+        //$this->strategy = $strategy; 
 
         //represents this games gameStateFile
         $this->gameStateFile=$gameStateFile;
@@ -92,8 +95,19 @@ class Game{
     }
 
     function CPUMove(){
-        $random = new RandomStrategy($this->board);
-        $computerMove = $random->pickPlace($this->board); // Get the computer's move
+        // Need to read strat here 
+        if($this->gameData['strategy']=='Smart') {
+            echo "Smart Strat Selected.\n";
+            $smart = new SmartStrategy($this->board);
+            $computerMove = $smart->pickPlace($this->board);
+        } else {
+            // Default to RandomStrategy if not Smart
+            echo "Random Strat Selected.\n"; 
+            $random = new RandomStrategy($this->board);
+            $computerMove = $random->pickPlace($this->board); // Get the computer's move
+        }
+        // $random = new RandomStrategy($this->board);
+        // $computerMove = $random->pickPlace($this->board); // Get the computer's move
     
         // Check if the move is valid and update the board and game state
         if (isset($computerMove['x']) && isset($computerMove['y'])) {

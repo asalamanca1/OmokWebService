@@ -1,6 +1,7 @@
 <?php
 include "Game.php";
 include_once "RandomStrategy.php";
+include_once "SmartStrategy.php"; 
 // include other strategy files if necessary
 
 //http://localhost:3000/src/play/index.php?pid=65daa65356166&x=1&y=4
@@ -46,6 +47,7 @@ else{
     if (file_exists($gameStateFile)) {
         $x=$_GET['x'];
         $y=$_GET['y'];
+
         //instantiate new Game and pass in x/y coordinate of placed stone
         $newGame = new Game($gameStateFile, intval($x), intval($y),"HUMAN");
         echo "we instantiated a new game";

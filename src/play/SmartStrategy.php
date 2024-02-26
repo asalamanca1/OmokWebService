@@ -1,7 +1,7 @@
 <?php
 include_once "MoveStrategy.php";
 
-class RandomStrategy extends MoveStrategy{
+class SmartStrategy extends MoveStrategy{
     protected $board;
     
     // function pickPlace($board){
@@ -18,12 +18,11 @@ class RandomStrategy extends MoveStrategy{
     // }
 
     function pickPlace(){
-        $freeSpaces = $this->pickRandom();
+        $freeSpaces = $this->pickSmart();
         return $freeSpaces;
     }
     //uses boolean and while loop to look for an empty spot
-    function pickRandom(){
-        echo "Random Strat Selected:";
+    function pickSmart(){
         $takenTile = true;
         while($takenTile){
             $x = rand(0,14);
