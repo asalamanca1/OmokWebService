@@ -39,9 +39,10 @@ else if($_GET['y']<0||$_GET['y']>14){
 else{
     //create gamestate file format using pid
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
-    // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-    $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+    $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+    //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
+    $gameData = json_decode($fileContent, true);
     
     //search if the file already exists, if so we can proceed with game
     if (file_exists($gameStateFile)) {
@@ -49,10 +50,29 @@ else{
         $y=$_GET['y'];
 
         //instantiate new Game and pass in x/y coordinate of placed stone
-        $newGame = new Game($gameStateFile, intval($x), intval($y),"HUMAN");
-        echo "we instantiated a new game";
+        $newGame = new Game($gameStateFile, $gameData, intval($x), intval($y),"HUMAN");
+        
         // Add move strat here
-        $intersections = $newGame->CPUMove();
+        if($cpuMove = $newGame->CPUMove()){
+            $response=array(
+                "response"=>true,
+                "ack_move"=>array(
+                    "x"=>$x,
+                    "y"=>$y,
+                    "isWin"=>$gameData['humanWon'],
+                    "isDraw"=>$gameData['isDraw'],
+                    "row"=>[]
+                ),
+                "move"=>array(
+                    "x"=>$cpuMove['x'],
+                    "y"=>$cpuMove['y'],
+                    "isWin"=>$gameData['computerWon'],
+                    "isDraw"=>$gameData['isDraw'],
+                    "row"=>[]
+                )
+            );
+        }
+        echo json_encode($response);
         exit;
 
     } 

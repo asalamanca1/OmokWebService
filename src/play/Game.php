@@ -19,7 +19,7 @@ class Game{
 
 
     //constructor that takes pid & both player and computer rows
-    public function __construct($gameStateFile, $x, $y, $player) {
+    public function __construct($gameStateFile, $gameData, $x, $y, $player) {
 
         //$this->strategy = $strategy; 
 
@@ -30,7 +30,7 @@ class Game{
         $fileContent = file_get_contents($gameStateFile);
 
         //decode the json content into an array
-        $this->gameData = json_decode($fileContent, true);
+        $this->gameData = $gameData;
 
 
         //store human players placed stones
