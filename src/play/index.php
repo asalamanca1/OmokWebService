@@ -48,6 +48,7 @@ else{
     if (file_exists($gameStateFile)) {
         $x=$_GET['x'];
         $y=$_GET['y'];
+//
 
         //instantiate new Game and pass in x/y coordinate of placed stone
         $newGame = new Game($gameStateFile, $gameData, intval($x), intval($y),"HUMAN");
