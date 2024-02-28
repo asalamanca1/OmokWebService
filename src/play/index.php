@@ -39,13 +39,13 @@ else if($_GET['y']<0||$_GET['y']>14){
 else{
     //create gamestate file format using pid
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
-    $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-    //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+    // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+    $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
     
     
     //search if the file already exists, if so we can proceed with game
-    if (file_exists($gameStateFile)) {
+    if ($_GET['pid']) {
         $x=$_GET['x'];
         $y=$_GET['y'];
         $fileContent = file_get_contents($gameStateFile);
@@ -66,7 +66,7 @@ else{
                     "y"=>$y,
                     "isWin"=>$gameData['humanWon'],
                     "isDraw"=>$gameData['isDraw'],
-                    "row"=>[1,1,2,2,3,3,4,4,5,5]
+                    "row"=>[1,1,2,2,3,3,4,4,5,5] //row will be winning row
                 ),
                 "move"=>array(
                     "x"=>$cpuMove['x'],

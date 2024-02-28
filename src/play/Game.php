@@ -79,12 +79,12 @@ class Game{
             $this->gameData['isDraw']=true;
         }
         //check if human player won game
-        else if ($this->board->checkForWin($x, $y, "HUMAN")) {
+        else if ($this->board->checkForWin($x, $y, "HUMAN", 5)) {
             //update game state to showcase win, winning row
             $this->gameData['humanWon']=true;
         }
         //check if computer player won game
-        else if ($this->board->checkForWin($x, $y, "COMPUTER")) {
+        else if ($this->board->checkForWin($x, $y, "COMPUTER", 5)) {
             //update game state to showcase win, winning row
             $this->gameData['computerWon']=true;
         }

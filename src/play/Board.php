@@ -70,34 +70,34 @@ class Board{
 
 
     //check for a winning row of 5
-    public function checkForWin($x,$y,$player) {
+    public function checkForWin($x,$y,$player, $n) {
         
         
         //for each intersection that belongs to player, check for a row of 5
         if($this->intersections[$x][$y]==$player){
             //Check vertically (up and down)
             $verticalCount = 1 + $this->countDown($x, $y - 1, $player) + $this->countUp($x, $y + 1, $player);
-            if ($verticalCount >= 5) {
+            if ($verticalCount >= $n) {
                 //Win condition met vertically
                 return true; 
             }
             //Check horizontally (left and right)
             $horizontalCount = 1 + $this->countLeft($x - 1, $y, $player) + $this->countRight($x + 1, $y, $player);
-            if ($horizontalCount >= 5) {
+            if ($horizontalCount >= $n) {
                 //Win condition met horizontally
                 return true; 
             }
             //FIX THE LOGIC FOR CHECKING DIAGONAL ROWS, ITS CURRENTLY INCORRECT
             //Check diagonally (top-left to bottom-right)
             $diagonalTRCount = 1 + $this->countLeft($x - 1, $y - 1, $player) + $this->countRight($x + 1, $y + 1, $player);
-            if ($diagonalTRCount >= 5) {
+            if ($diagonalTRCount >= $n) {
                 //Win condition met diagonally (top-left to bottom-right)
                 return true; 
             }
             //FIX THE LOGIC FOR CHECKING DIAGONAL ROWS, ITS CURRENTLY INCORRECT
             //Check diagonally (top-right to bottom-left)
             $diagonalTLCount = 1 + $this->countRight($x + 1, $y - 1, $player) + $this->countLeft($x - 1, $y + 1, $player);
-            if ($diagonalTLCount >= 5) {
+            if ($diagonalTLCount >= $n) {
                 //Win condition met diagonally (top-right to bottom-left)
                 return true; 
             }

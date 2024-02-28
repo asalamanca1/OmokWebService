@@ -2,6 +2,9 @@
 //URL FORMAT: http://localhost:3000/OmokWebService/src/new/index.php?strategy=Smart
 define('STRATEGY', 'strategy'); // constant
 $strategies = ["Smart", "Random"]; // supported strategies
+
+
+
 if (!array_key_exists(STRATEGY, $_GET)) { 
     //strategy not specified
     $response = array("response" => false, "reason" => "Strategy not specified");
@@ -31,8 +34,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-             $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            //  $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
@@ -63,8 +66,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
@@ -91,5 +94,4 @@ else{
 
     
 ?>
-
 
