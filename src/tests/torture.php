@@ -12,7 +12,8 @@
 //info
 //$home="https://cssrvlab01.utep.edu/Classes/cs3360Cheon/Section1/fmunoz9/OmokWebService/src/info/index.php";
 //new
-$home="https://cssrvlab01.utep.edu/Classes/cs3360Cheon/Section1/fmunoz9/OmokWebService/src";
+//$home="https://cssrvlab01.utep.edu/Classes/cs3360Cheon/Section1/fmunoz9/OmokWebService/src";
+$home="http://cssrvlab01.utep.edu/Classes/cs3360Cheon/Section1/asalamanca1/OmokWebService/src/info/index.php";
 
 $strategies = array(); // strategies supported by the web service under test
 $size = 15;  // size of the board

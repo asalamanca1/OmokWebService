@@ -30,7 +30,7 @@ class Game{
         $fileContent = file_get_contents($gameStateFile);
 
         //decode the json content into an array
-        $this->gameData = $gameData;
+        $this->gameData = json_decode($fileContent, true);
 
 
         //store human players placed stones
@@ -45,6 +45,8 @@ class Game{
         if($player=="HUMAN"){
           
             //$humanPlayerStones=$humanPlayerStones+$appendedCoordinates;
+            //echo json_encode($humanPlayerStones);
+            //echo json_encode($appendedCoordinates);
             $humanPlayerStones=array_merge($humanPlayerStones, $appendedCoordinates);
            
         
