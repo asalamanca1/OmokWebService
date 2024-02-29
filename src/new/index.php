@@ -34,8 +34,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            //  $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            $gameStateFile='../writable/';
+            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
@@ -43,6 +43,7 @@ else{
                 'isDraw'=>$isDraw, 'humanWon'=>$humanWon, 'computerWon'=>$computerWon, 'winningRow'=>$winningRow));
             //put content into gamestate file
             file_put_contents($gameStateFile, $fileContent);
+
           
            
             break;
@@ -66,10 +67,12 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            $gameStateFile='../writable/';
+            //$gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
+            echo $gameStateFile;
             //encode gamestate file variables into json object
             $fileContent = json_encode(array('pid' => $pid, 'strategy' => $strategy, 'humanPlayerStones' => $humanPlayerStones, 'computerPlayerStones' =>  $computerPlayerStones, 
                 'isDraw'=>$isDraw, 'humanWon'=>$humanWon, 'computerWon'=>$computerWon, 'winningRow'=>$winningRow));

@@ -23,7 +23,7 @@ class RandomStrategy extends MoveStrategy{
     }
     //uses boolean and while loop to look for an empty spot
     function pickRandom(){
-        echo "Random Strat Selected:";
+       
         $takenTile = true;
         while($takenTile){
             $x = rand(0,14);

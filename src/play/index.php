@@ -39,13 +39,15 @@ else if($_GET['y']<0||$_GET['y']>14){
 else{
     //create gamestate file format using pid
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
-    // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-    $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+    //$gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+    $gameStateFile='../writable/';
+    //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
     
     
     //search if the file already exists, if so we can proceed with game
-    if ($_GET['pid']) {
+    if(file_exists(($gameStateFile))){
+    
         $x=$_GET['x'];
         $y=$_GET['y'];
         $fileContent = file_get_contents($gameStateFile);

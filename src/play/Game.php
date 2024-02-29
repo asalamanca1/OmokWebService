@@ -99,12 +99,12 @@ class Game{
     function CPUMove(){
         // Need to read strat here 
         if($this->gameData['strategy']=='Smart') {
-            echo "Smart Strat Selected.\n";
+     
             $smart = new SmartStrategy($this->board);
             $computerMove = $smart->pickPlace($this->board);
         } else {
             // Default to RandomStrategy if not Smart
-            echo "Random Strat Selected.\n"; 
+       
             $random = new RandomStrategy($this->board);
             $computerMove = $random->pickPlace($this->board); // Get the computer's move
         }
