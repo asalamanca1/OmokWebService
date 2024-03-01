@@ -1,5 +1,5 @@
 <?php
-include "Game.php";
+include_once "Game.php";
 include_once "RandomStrategy.php";
 include_once "SmartStrategy.php"; 
 // include other strategy files if necessary
@@ -39,9 +39,9 @@ else if($_GET['y']<0||$_GET['y']>14){
 else{
     //create gamestate file format using pid
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
-    //$gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-    $gameStateFile='../writable/';
-    //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+    // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
+    // $gameStateFile='../writable/';
+    $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
     
     
@@ -68,14 +68,14 @@ else{
                     "y"=>$y,
                     "isWin"=>$gameData['humanWon'],
                     "isDraw"=>$gameData['isDraw'],
-                    "row"=>[1,1,2,2,3,3,4,4,5,5] //row will be winning row
+                    "row"=>$gameData['winningRow'] //row will be winning row
                 ),
                 "move"=>array(
                     "x"=>$cpuMove['x'],
                     "y"=>$cpuMove['y'],
                     "isWin"=>$gameData['computerWon'],
                     "isDraw"=>$gameData['isDraw'],
-                    "row"=>[1,1,2,2,3,3,4,4,5,5]
+                    "row"=>$gameData['winningRow']
                 )
             );
         }

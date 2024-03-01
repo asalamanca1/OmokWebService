@@ -1,8 +1,7 @@
 <?php
-include "Board.php";
 include_once "RandomStrategy.php"; 
 include_once "SmartStrategy.php";
-
+include_once "Board.php"; 
 class Game{
     public Board $board;//respresents game board
     public $strategy;//represents games strategy
@@ -38,13 +37,15 @@ class Game{
         //store computer players placed stones
         $computerPlayerStones=$this->gameData['computerPlayerStones'];
 
+        
+
         //append new coordinates to players stones
         $appendedCoordinates=[$x,$y];
       
        
         if($player=="HUMAN"){
           
-            //$humanPlayerStones=$humanPlayerStones+$appendedCoordinates;
+            // $humanPlayerStones=$humanPlayerStones+$appendedCoordinates;
             //echo json_encode($humanPlayerStones);
             //echo json_encode($appendedCoordinates);
             $humanPlayerStones=array_merge($humanPlayerStones, $appendedCoordinates);
@@ -58,14 +59,20 @@ class Game{
         }
         
         //instantiate the Board class
-        $this->board = new Board($humanPlayerStones, $computerPlayerStones);
+        $this->board = new Board($humanPlayerStones, $computerPlayerStones, $gameData);
 
         //if player is human, place stone on board and set it to humanPlayers stone
         if($player=="HUMAN"){
             $this->board->placeStone($x,$y,"HUMAN");
+            // $this->gameData = $this->board->getGameData();
+            // $newFileContent = json_encode($this->gameData);
+            // file_put_contents($this->gameStateFile, $newFileContent);
         }
         //if player is computer, place stone on board and set it to computerPlayers stone
         else{
+            // $this->gameData = $this->board->getGameData();
+            // $newFileContent = json_encode($this->gameData);
+            // file_put_contents($this->gameStateFile, $newFileContent);
             $this->board->placeStone($x,$y,"COMPUTER");
         }
 
@@ -79,20 +86,24 @@ class Game{
             $this->gameData['isDraw']=true;
         }
         //check if human player won game
-        else if ($this->board->checkForWin($x, $y, "HUMAN", 5)) {
+        else if ($this->board->checkForWin($x, $y, "HUMAN", 5, $gameData)) {
             //update game state to showcase win, winning row
             $this->gameData['humanWon']=true;
+            $this->gameData = $this->board->getGameData();
         }
         //check if computer player won game
-        else if ($this->board->checkForWin($x, $y, "COMPUTER", 5)) {
+        else if ($this->board->checkForWin($x, $y, "COMPUTER", 5, $gameData)) {
             //update game state to showcase win, winning row
             $this->gameData['computerWon']=true;
+            
         }
         //convert the array to JSON
         $newFileContent = json_encode($this->gameData);
         //update game state file
         file_put_contents($this->gameStateFile, $newFileContent);
-
+        // $this->gameData = $this->board->getGameData(); // This should include the latest winningRow information if a win was detected
+        // $newFileContent = json_encode($this->gameData);
+        // file_put_contents($this->gameStateFile, $newFileContent);
 
     }
 
@@ -124,6 +135,7 @@ class Game{
     
         return $computerMove;
     }
+
     
 
 
