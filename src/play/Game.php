@@ -20,7 +20,7 @@ class Game{
     //constructor that takes pid & both player and computer rows
     public function __construct($gameStateFile, $gameData, $x, $y, $player) {
 
-        //$this->strategy = $strategy; 
+        //$this->strategy = $strategy;
 
         //represents this games gameStateFile
         $this->gameStateFile=$gameStateFile;
@@ -53,7 +53,7 @@ class Game{
         
             $this->gameData['humanPlayerStones']=$humanPlayerStones;
         }
-        else{
+        else {
             $computerPlayerStones+=$appendedCoordinates;
             $this->gameData['computerPlayerStones']=$computerPlayerStones;
         }
@@ -107,11 +107,12 @@ class Game{
 
     }
 
-    function CPUMove(){
+    function CPUMove($x, $y){
         // Need to read strat here 
         if($this->gameData['strategy']=='Smart') {
      
-            $smart = new SmartStrategy($this->board);
+            $smart = new SmartStrategy($this->board, $this->gameData, $this->gameStateFile, $x, $y);
+            $this->board->checkForWin($x, $y, "HUMAN", 3, $this->gameData);
             $computerMove = $smart->pickPlace($this->board);
         } else {
             // Default to RandomStrategy if not Smart

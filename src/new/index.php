@@ -34,8 +34,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            $gameStateFile='../writable/';
-            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            // $gameStateFile='../writable/';
+            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
@@ -63,13 +63,13 @@ else{
             //encode successful response
             $response = array("response" => true, "pid" => $pid);
             echo json_encode($response);
-            
+
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            $gameStateFile='../writable/';
+            // $gameStateFile='../writable/';
             //$gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             echo $gameStateFile;
@@ -80,8 +80,7 @@ else{
             file_put_contents($gameStateFile, $fileContent);
          
             break;
-         
-            
+
         //strategy not specified
         default:
             $response = array("response" => false, "reason" => "Uknown strategy");
@@ -89,12 +88,5 @@ else{
             break;
     }
 }
-
-
-
-
-
-
-    
 ?>
 

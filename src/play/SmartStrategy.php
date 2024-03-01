@@ -3,7 +3,10 @@ include_once "MoveStrategy.php";
 
 class SmartStrategy extends MoveStrategy{
     protected $board;
-    
+    private $gameStateFile;//game state file
+    private $gameData;//stores game state data array
+    private $x;
+    private $y;
     // function pickPlace($board){
     //     while (true) {
     //         $x = mt_rand(0, 9);
@@ -16,19 +19,26 @@ class SmartStrategy extends MoveStrategy{
     //     }
     //     return;
     // }
+    public function __construct($board, $gameData, $gameStateFile, $x, $y) {
+        $this->x = $x;
+        $this->y = $y;
+        $this->gameData = $gameData;
+        $this->board = $board;
+        $this->gameStateFile = $gameStateFile;
+    }
 
     function pickPlace(){
-        $freeSpaces = $this->pickSmart();
+        $freeSpaces = $this->pickSmart($this->x, $this->y);
         return $freeSpaces;
     }
     //uses boolean and while loop to look for an empty spot
-    function pickSmart(){
-     
+    function pickSmart($x, $y){
+
         $takenTile = true;
         while($takenTile){
             $x = rand(0,14);
             $y = rand(0,14);
-            // echo "CPU MOVE: Ln 30, RandomStrat"; 
+            // echo "CPU MOVE: Ln 30, RandomStrat";
             $coordinate[0] = $x;
             $coordinate[1] = $y;
             if($this->board->isEmpty($x, $y) == true){

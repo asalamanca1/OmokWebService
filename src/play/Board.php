@@ -73,7 +73,7 @@ class Board{
     }
 
 
-    //check for a winning row of 5
+    //check for a winning row of 5 or a potential winning row >= 3
     public function checkForWin($x, $y, $player, $n) {
         $this->winningRow = [];
         if($this->intersections[$x][$y] == $player) {
