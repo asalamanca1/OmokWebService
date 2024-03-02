@@ -90,8 +90,8 @@ class Board{
             if ($count >= $n) {
                 $this->winningRow = $tempWinningRow;
                 $this->gameData['winningRow'] = $this->winningRow;
-                $newFileContent = json_encode($this->gameData);
-                file_put_contents($this->gameStateFile, $newFileContent);
+                //$newFileContent = json_encode($this->gameData);
+                //file_put_contents($this->gameStateFile, $newFileContent);
 
                 return true;
             }
@@ -110,7 +110,7 @@ class Board{
     
             //Check diagonally (top-left to bottom-right & bottom-right to top-left)
             $tempWinningRow = [$x, $y];
-            $count = 1 + $this->countDiagonal_TL_BR($x + 1, $y - 1, $player) + $this->countDiagonal_BR_TL($x - 1, $y + 1, $player);
+            $count = 1 + $this->countDiagonal_TL_BR($x + 1, $y - 1, $player,$tempWinningRow) + $this->countDiagonal_BR_TL($x - 1, $y + 1, $player,$tempWinningRow);
             if ($count >= $n) {
                 $this->winningRow = $tempWinningRow;
                 $this->gameData['winningRow'] = $this->winningRow;
@@ -120,7 +120,7 @@ class Board{
     
             //Check diagonally (top-right to bottom-left & bottom-left to top-right)
             $tempWinningRow = [$x, $y];
-            $count = 1 + $this->countDiagonal_TR_BL($x - 1, $y - 1, $player) + $this->countDiagonal_BL_TR($x + 1, $y + 1, $player);
+            $count = 1 + $this->countDiagonal_TR_BL($x - 1, $y - 1, $player,$tempWinningRow) + $this->countDiagonal_BL_TR($x + 1, $y + 1, $player,$tempWinningRow);
             if ($count >= $n) {
                 $this->winningRow = $tempWinningRow;
                 $this->gameData['winningRow'] = $this->winningRow;
@@ -174,38 +174,38 @@ class Board{
     }
     
     //Count diagonally (top-right to bottom-left)
-    public function countDiagonal_TR_BL($x, $y, $player) {
+    public function countDiagonal_TR_BL($x, $y, $player,&$tempWinningRow) {
         if ($x != 0 && $y != 0 && $this->intersections[$x][$y] == $player) {
             $tempWinningRow[] = $x;
             $tempWinningRow[] = $y;
-            return 1 + $this->countDiagonal_TR_BL($x - 1, $y - 1, $player);
+            return 1 + $this->countDiagonal_TR_BL($x - 1, $y - 1, $player,$tempWinningRow);
         }
         return 0;
     }
     //Count diagonally (top-right to bottom-left)
-    public function countDiagonal_BL_TR($x, $y, $player) {
+    public function countDiagonal_BL_TR($x, $y, $player,&$tempWinningRow) {
         if ($x != 14 && $y != 14 && $this->intersections[$x][$y] == $player) {
             $tempWinningRow[] = $x;
             $tempWinningRow[] = $y;
-            return 1 + $this->countDiagonal_BL_TR($x + 1, $y + 1, $player);
+            return 1 + $this->countDiagonal_BL_TR($x + 1, $y + 1, $player,$tempWinningRow);
         }
         return 0;
     }
     //Count diagonally (top-left to bottom-right)
-    public function countDiagonal_TL_BR($x, $y, $player) {
+    public function countDiagonal_TL_BR($x, $y, $player,&$tempWinningRow) {
         if ($x != 14 && $y != 0 && $this->intersections[$x][$y] == $player) {
             $tempWinningRow[] = $x;
             $tempWinningRow[] = $y;
-            return 1 + $this->countDiagonal_TL_BR($x + 1, $y - 1, $player);
+            return 1 + $this->countDiagonal_TL_BR($x + 1, $y - 1, $player,$tempWinningRow);
         }
         return 0;
     }
     //Count diagonally from bottom right to top left
-    public function countDiagonal_BR_TL($x, $y, $player) {
+    public function countDiagonal_BR_TL($x, $y, $player,&$tempWinningRow) {
         if ($x != 0 && $y != 14 && $this->intersections[$x][$y] == $player) {
             $tempWinningRow[] = $x;
             $tempWinningRow[] = $y;
-            return 1 + $this->countDiagonal_BR_TL($x - 1, $y + 1, $player);
+            return 1 + $this->countDiagonal_BR_TL($x - 1, $y + 1, $player,$tempWinningRow);
         }
         return 0;
     }

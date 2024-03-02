@@ -86,6 +86,9 @@ else{
         else{
             echo json_encode($response);
         }
+        if($newGame->gameOver==true){
+            unlink($gameStateFile);
+        }
         exit;
 
     } 

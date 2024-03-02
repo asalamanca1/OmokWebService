@@ -9,6 +9,7 @@ class Game{
     private $gameData;//stores game state data array
     public $computerPlayerStones;
     public $validMove;
+    public $gameOver;
 
     //PSEUDOCODE
     //instantiate board with player and computer intersections
@@ -22,6 +23,7 @@ class Game{
     public function __construct($gameStateFile, $gameData, $x, $y, $player) {
 
         //$this->strategy = $strategy;
+        $this->gameOver=false;
 
         $this->validMove=false;
 
@@ -98,11 +100,13 @@ class Game{
             //update game state to showcase win, winning row
             $this->gameData = $this->board->getGameData();
             $this->gameData['humanWon']=true;
+            $this->gameOver=true;
         }
         //check if computer player won game
         else if ($this->board->checkForWin($x, $y, "COMPUTER", 5, $gameData)) {
             //update game state to showcase win, winning row
             $this->gameData['computerWon']=true;
+            $this->gameOver=true;
             
         }
         //convert the array to JSON
@@ -112,6 +116,7 @@ class Game{
         // $this->gameData = $this->board->getGameData(); // This should include the latest winningRow information if a win was detected
         // $newFileContent = json_encode($this->gameData);
         // file_put_contents($this->gameStateFile, $newFileContent);
+        
 
     }
 
@@ -147,6 +152,9 @@ class Game{
 
     public function validMove(){
         return $this->validMove;
+    }
+    public function gameOver(){
+        return $this->gameOver;
     }
 
     
