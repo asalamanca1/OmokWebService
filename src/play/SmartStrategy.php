@@ -33,16 +33,89 @@ class SmartStrategy extends MoveStrategy{
     }
     //uses boolean and while loop to look for an empty spot
     function pickSmart($x, $y){
-        
-
         $takenTile = true;
-        
+
         if($this->board->checkForWin($x, $y, "HUMAN", 3, $this->gameData)) {
-            
-            $x = $x + 1;
-            $y = $y + 1;
-            return array('x' => $x, 'y' => $y);
-        } 
+            $this->gameData = $this->board->getGameData();
+            if($this->gameData['rowType'] == "Vertical") {
+                $x = $x;
+                $y = $y + 1;
+                if(!$this->board->isEmpty($x, $y)) {
+                    $takenTile = true;
+                    while($takenTile){
+                        $x = rand(0,14);
+                        $y = rand(0,14);
+                        // echo "CPU MOVE: Ln 30, RandomStrat"; 
+                        //$coordinate[0] = $x;
+                        //$coordinate[1] = $y;
+                        if($this->board->isEmpty($x, $y) == true){
+                            $takenTile = false;
+                        }
+                    }
+                }
+            } else if ($this->gameData['rowType'] == "Horizontal") {
+                $x = $x + 1;
+                $y = $y;
+                if(!$this->board->isEmpty($x, $y)) {
+                    $takenTile = true;
+                    while($takenTile){
+                        $x = rand(0,14);
+                        $y = rand(0,14);
+                        // echo "CPU MOVE: Ln 30, RandomStrat"; 
+                        //$coordinate[0] = $x;
+                        //$coordinate[1] = $y;
+                        if($this->board->isEmpty($x, $y) == true){
+                            $takenTile = false;
+                        }
+                    }
+                }
+            } else if ($this->gameData['rowType'] == "DiagonalRL") {
+                $x = $x + 1;
+                $y = $y + 1;
+                if(!$this->board->isEmpty($x, $y)) {
+                    $takenTile = true;
+                    while($takenTile){
+                        $x = rand(0,14);
+                        $y = rand(0,14);
+                        // echo "CPU MOVE: Ln 30, RandomStrat"; 
+                        //$coordinate[0] = $x;
+                        //$coordinate[1] = $y;
+                        if($this->board->isEmpty($x, $y) == true){
+                            $takenTile = false;
+                        }
+                    }
+                }
+            } else if ($this->gameData['rowType'] == "DiagonalLR") {
+                $x = $x - 1;
+                $y = $y + 1;
+                if(!$this->board->isEmpty($x, $y)) {
+                    $takenTile = true;
+                    while($takenTile){
+                        $x = rand(0,14);
+                        $y = rand(0,14);
+                        // echo "CPU MOVE: Ln 30, RandomStrat"; 
+                        //$coordinate[0] = $x;
+                        //$coordinate[1] = $y;
+                        if($this->board->isEmpty($x, $y) == true){
+                            $takenTile = false;
+                        }
+                    }
+                }
+            }
+        } else {
+            $takenTile = true;
+                while($takenTile){
+                    $x = rand(0,14);
+                    $y = rand(0,14);
+                    // echo "CPU MOVE: Ln 30, RandomStrat"; 
+                    //$coordinate[0] = $x;
+                    //$coordinate[1] = $y;
+                    if($this->board->isEmpty($x, $y) == true){
+                        $takenTile = false;
+                    }
+                }
+        }
+        return array('x' => $x, 'y' => $y);
         // echo "CPU MOVE: Ln 30, RandomStrat"; 
             //$coordinate[0] = $x;
             //$coordinate[1] = $y;
@@ -51,7 +124,6 @@ class SmartStrategy extends MoveStrategy{
             $takenTile = false;
         }
         
-        return array('x' => $x+5, 'y' => $y+5);
     }
 }
 

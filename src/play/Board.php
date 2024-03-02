@@ -1,5 +1,9 @@
 <?php
 include_once "Game.php"; 
+
+define('ROWTYPE', 'rowtype'); // constant
+$rowtypes = ["Horizontal", "Vertical", "Diagonal_/", "Diagonal"];
+
 class Board{
 
     private $intersections=array();//represents 2d array of 15x15 intersections on board
@@ -52,8 +56,6 @@ class Board{
     public function intersections(){
         return $this->intersections;
     }
- 
-
 
     //assigns player to intersection
     public function placeStone($x,$y,$player){
@@ -62,9 +64,7 @@ class Board{
             return true;
         }
         return false;
-       
     }
-
 
     //checks for draw by checking if all intersections on board are full
     public function isDraw(){
@@ -93,7 +93,7 @@ class Board{
                 $this->gameData['winningRow'] = $this->winningRow;
                 //$newFileContent = json_encode($this->gameData);
                 //file_put_contents($this->gameStateFile, $newFileContent);
-
+                $this->gameData['rowType'] = "Vertical";
                 return true;
             }
             $count=0;
@@ -104,7 +104,7 @@ class Board{
             if ($count >= $n) {
                 $this->winningRow = $tempWinningRow;
                 $this->gameData['winningRow'] = $this->winningRow;
-                
+                $this->gameData['rowType'] = "Horizontal";
                 return true;
             }
             $count=0;
@@ -115,6 +115,7 @@ class Board{
             if ($count >= $n) {
                 $this->winningRow = $tempWinningRow;
                 $this->gameData['winningRow'] = $this->winningRow;
+                $this->gameData['rowType'] = "DiagonalLR";
                 return true;
             }
             $count=0;
@@ -125,6 +126,7 @@ class Board{
             if ($count >= $n) {
                 $this->winningRow = $tempWinningRow;
                 $this->gameData['winningRow'] = $this->winningRow;
+                $this->gameData['rowType'] = "DiagonalRL";
                 return true;
             }
             $count=0;
@@ -211,21 +213,15 @@ class Board{
         return 0;
     }
 
-
-    
     public function getGameData() {
         return $this->gameData;
     }
-    
 
     public function isEmpty($x, $y) {
         // Assuming $this->intersections is the 2D array representing the board
         // Check if the position is within the board bounds and is empty
         return ($this->intersections[$x][$y] == "EMPTY");
     }
-
-    //NOTE: add function that counts diagonally from bottom right to top left
-
 }
 
 ?>

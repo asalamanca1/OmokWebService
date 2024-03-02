@@ -10,6 +10,7 @@ class Game{
     public $computerPlayerStones;
     public $validMove;
     public $gameOver;
+    protected $cpuMove;
 
     //PSEUDOCODE
     //instantiate board with player and computer intersections
@@ -156,23 +157,15 @@ class Game{
     public function gameOver(){
         return $this->gameOver;
     }
-
     
-
-
-    /*
-    static function fromJson($json) {
-        $obj = json_decode($json); // of stdClass
-        $strategy = $obj->{'strategy'};
-        $board = $obj->{'board'};
-        $game = new Game();
-        $game->board = Board::fromJson($board);
-        $name = $strategy->{'name'};
-        $game->strategy = $name::fromJson($strategy);
-        $game->strategy->board = $game->board;
-        return $game;
-     }
-     */
-  
+    public function setCpuMove($cpuMove){
+        $this->cpuMove=$cpuMove;
+    }
+    public function getCpuMove(){
+        return $this->cpuMove;
+    }
+    public function board(){
+        return $this->board;
+    }
 }
 ?>

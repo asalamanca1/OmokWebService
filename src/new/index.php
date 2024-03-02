@@ -25,8 +25,9 @@ else{
             $winningRow=[];
             $humanPlayerStones=[];
             $computerPlayerStones=[];
+            $rowType = "";
             $pid=uniqid();
-
+            
             //encode successful response
             $response = array("response" => true, "pid" => $pid);
             echo json_encode($response);
@@ -40,7 +41,7 @@ else{
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
             $fileContent = json_encode(array('pid' => $pid, 'strategy' => $strategy, 'humanPlayerStones' => $humanPlayerStones, 'computerPlayerStones' =>  $computerPlayerStones, 
-                'isDraw'=>$isDraw, 'humanWon'=>$humanWon, 'computerWon'=>$computerWon, 'winningRow'=>$winningRow));
+                'isDraw'=>$isDraw, 'humanWon'=>$humanWon, 'computerWon'=>$computerWon, 'winningRow'=>$winningRow, 'rowType' => $rowType));
             //put content into gamestate file
             file_put_contents($gameStateFile, $fileContent);
 
@@ -58,6 +59,7 @@ else{
             $winningRow=array();
             $humanPlayerStones=array();
             $computerPlayerStones=array();
+            $rowType = "";
             $pid=uniqid();
 
             //encode successful response
@@ -75,7 +77,7 @@ else{
             echo $gameStateFile;
             //encode gamestate file variables into json object
             $fileContent = json_encode(array('pid' => $pid, 'strategy' => $strategy, 'humanPlayerStones' => $humanPlayerStones, 'computerPlayerStones' =>  $computerPlayerStones, 
-                'isDraw'=>$isDraw, 'humanWon'=>$humanWon, 'computerWon'=>$computerWon, 'winningRow'=>$winningRow));
+                'isDraw'=>$isDraw, 'humanWon'=>$humanWon, 'computerWon'=>$computerWon, 'winningRow'=>$winningRow, 'rowType' => $rowType));
             //put content into gamestate file
             file_put_contents($gameStateFile, $fileContent);
          

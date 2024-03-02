@@ -43,22 +43,20 @@ else{
     $gameStateFile='../writable/';
     //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
-    
-    
+
     //search if the file already exists, if so we can proceed with game
     if(file_exists(($gameStateFile))){
-    
         $x=$_GET['x'];
         $y=$_GET['y'];
         $fileContent = file_get_contents($gameStateFile);
         $gameData = json_decode($fileContent, true);
-//
 
         //instantiate new Game and pass in x/y coordinate of placed stone
         $newGame = new Game($gameStateFile, $gameData, intval($x), intval($y),"HUMAN");
-        
-        // Add move strat here
+        // CPU Move
         if($cpuMove = $newGame->CPUMove(intval($x), intval($y))){
+            $newGame->setCpuMove($cpuMove);
+            $newGame->board->placeStone($cpuMove['x'],$cpuMove['y'],"COMPUTER");
             $fileContent = file_get_contents($gameStateFile);
             $gameData = json_decode($fileContent, true);
             $response=array(
@@ -91,17 +89,13 @@ else{
         }
         exit;
 
-    } 
+    }
     //gamestate file with given pid does not exist, this means a game has not been started with this pid
     else {
         $response = array("response" => false, "reason" => "Invalid Pid");
         echo json_encode($response);
-        exit; 
+        exit;
     }
 
 }
-
-//nano /opt/homebrew/etc/php/7.4/php.ini
-///opt/homebrew/lib/php/pecl/20190902
-
 ?>
