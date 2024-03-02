@@ -40,8 +40,8 @@ else{
     //create gamestate file format using pid
     //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
     // $gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-    // $gameStateFile='../writable/';
-    $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+    $gameStateFile='../writable/';
+    //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
     $gameStateFile.=$_GET['pid'].'.txt';
     
     
@@ -79,7 +79,13 @@ else{
                 )
             );
         }
-        echo json_encode($response);
+        if($newGame->validMove()){
+            $response = array("response" => false, "reason" => "Coordinate is not empty");
+            echo json_encode($response);
+        }
+        else{
+            echo json_encode($response);
+        }
         exit;
 
     } 

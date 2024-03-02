@@ -34,8 +34,8 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            // $gameStateFile='../writable/';
-            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            $gameStateFile='../writable/';
+            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             //encode gamestate file variables into json object
@@ -67,9 +67,9 @@ else{
 
             //NOTE FOR FER: comment out my path in initial declaration of $gameStateFile and replace it with your path
             //store pid and game strategy in data/pid file
-            // $gameStateFile='../writable/';
+            $gameStateFile='../writable/';
             //$gameStateFile='/Users/andre/Programming Languages/OmokWebService/src/data/';
-            $gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
+            //$gameStateFile='/Users/fernandomunoz/Documents/Omok_Web/OmokWebService/src/data/';
             $gameStateFile.=$pid;
             $gameStateFile .= '.txt';
             echo $gameStateFile;

@@ -8,6 +8,7 @@ class Game{
     private $gameStateFile;//game state file
     private $gameData;//stores game state data array
     public $computerPlayerStones;
+    public $validMove;
 
     //PSEUDOCODE
     //instantiate board with player and computer intersections
@@ -21,6 +22,8 @@ class Game{
     public function __construct($gameStateFile, $gameData, $x, $y, $player) {
 
         //$this->strategy = $strategy;
+
+        $this->validMove=false;
 
         //represents this games gameStateFile
         $this->gameStateFile=$gameStateFile;
@@ -59,11 +62,16 @@ class Game{
         }
         
         //instantiate the Board class
-        $this->board = new Board($humanPlayerStones, $computerPlayerStones, $gameData);
+        $this->board = new Board($humanPlayerStones, $computerPlayerStones, $gameData, $gameStateFile);
 
         //if player is human, place stone on board and set it to humanPlayers stone
         if($player=="HUMAN"){
-            $this->board->placeStone($x,$y,"HUMAN");
+            if($this->board->placeStone($x,$y,"HUMAN")){
+                $this->validMove=true;
+            }
+            else{
+                $this->validMove=false;
+            }
             // $this->gameData = $this->board->getGameData();
             // $newFileContent = json_encode($this->gameData);
             // file_put_contents($this->gameStateFile, $newFileContent);
@@ -88,8 +96,8 @@ class Game{
         //check if human player won game
         else if ($this->board->checkForWin($x, $y, "HUMAN", 5, $gameData)) {
             //update game state to showcase win, winning row
-            $this->gameData['humanWon']=true;
             $this->gameData = $this->board->getGameData();
+            $this->gameData['humanWon']=true;
         }
         //check if computer player won game
         else if ($this->board->checkForWin($x, $y, "COMPUTER", 5, $gameData)) {
@@ -135,6 +143,10 @@ class Game{
         }
     
         return $computerMove;
+    }
+
+    public function validMove(){
+        return $this->validMove;
     }
 
     
