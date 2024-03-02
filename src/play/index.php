@@ -58,7 +58,7 @@ else{
         $newGame = new Game($gameStateFile, $gameData, intval($x), intval($y),"HUMAN");
         
         // Add move strat here
-        if($cpuMove = $newGame->CPUMove($x, $y)){
+        if($cpuMove = $newGame->CPUMove(intval($x), intval($y))){
             $fileContent = file_get_contents($gameStateFile);
             $gameData = json_decode($fileContent, true);
             $response=array(

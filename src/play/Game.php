@@ -124,8 +124,8 @@ class Game{
         // Need to read strat here 
         if($this->gameData['strategy']=='Smart') {
      
-            $smart = new SmartStrategy($this->board, $this->gameData, $this->gameStateFile, $x, $y);
-            $this->board->checkForWin($x, $y, "HUMAN", 3, $this->gameData);
+            $smart = new SmartStrategy($this->board, $this->gameData, $this->gameStateFile, intval($x), intval($y));
+            //$this->board->checkForWin($x, $y, "HUMAN", 3, $this->gameData);
             $computerMove = $smart->pickPlace($this->board);
         } else {
             // Default to RandomStrategy if not Smart

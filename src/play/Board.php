@@ -80,7 +80,8 @@ class Board{
 
 
     //check for a winning row of 5 or a potential winning row >= 3
-    public function checkForWin($x, $y, $player, $n) {
+    public function checkForWin($x, $y, $player, $n,$gameData) {
+        $this->gameData=$gameData;
         $count=0;
         $this->winningRow = [];
         if($this->intersections[$x][$y] == $player) {
@@ -220,7 +221,7 @@ class Board{
     public function isEmpty($x, $y) {
         // Assuming $this->intersections is the 2D array representing the board
         // Check if the position is within the board bounds and is empty
-        return isset($this->intersections[$x][$y]) && $this->intersections[$x][$y] == "EMPTY";
+        return ($this->intersections[$x][$y] == "EMPTY");
     }
 
     //NOTE: add function that counts diagonally from bottom right to top left

@@ -29,8 +29,8 @@ class RandomStrategy extends MoveStrategy{
             $x = rand(0,14);
             $y = rand(0,14);
             // echo "CPU MOVE: Ln 30, RandomStrat"; 
-            $coordinate[0] = $x;
-            $coordinate[1] = $y;
+            //$coordinate[0] = $x;
+            //$coordinate[1] = $y;
             if($this->board->isEmpty($x, $y) == true){
                 $takenTile = false;
             }

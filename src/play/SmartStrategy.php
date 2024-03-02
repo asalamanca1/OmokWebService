@@ -33,19 +33,25 @@ class SmartStrategy extends MoveStrategy{
     }
     //uses boolean and while loop to look for an empty spot
     function pickSmart($x, $y){
+        
 
         $takenTile = true;
-        while($takenTile){
-            $x = rand(0,14);
-            $y = rand(0,14);
-            // echo "CPU MOVE: Ln 30, RandomStrat";
-            $coordinate[0] = $x;
-            $coordinate[1] = $y;
-            if($this->board->isEmpty($x, $y) == true){
-                $takenTile = false;
-            }
+        
+        if($this->board->checkForWin($x, $y, "HUMAN", 3, $this->gameData)) {
+            
+            $x = $x + 1;
+            $y = $y + 1;
+            return array('x' => $x, 'y' => $y);
+        } 
+        // echo "CPU MOVE: Ln 30, RandomStrat"; 
+            //$coordinate[0] = $x;
+            //$coordinate[1] = $y;
+        
+        if($this->board->isEmpty($x, $y) == true){
+            $takenTile = false;
         }
-        return array('x' => $x, 'y' => $y);;
+        
+        return array('x' => $x+5, 'y' => $y+5);
     }
 }
 
